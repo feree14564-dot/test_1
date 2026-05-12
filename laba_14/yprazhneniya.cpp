@@ -6,6 +6,8 @@
 #include <set>
 #include <map>
 #include <string>
+#include <sstream>
+
 
 using namespace std;
 
@@ -17,8 +19,9 @@ int main()
 	ifstream fin("input.txt");
     if (!fin.is_open()) {
         cerr << "Error, file did not oppend: input.txt" << endl;
-        return 1; // завершаем программу с ошибкой
+        return 1; // завершаем программу с ошибкой если файл не прочитана или не найден
     }
+
     int u, v;
     vector<pair<int, int>> edges;
     set<int> vertices;
@@ -62,4 +65,29 @@ for (int i = 0; i < n; ++i) {
 }
     fin.close(); 
 
+
+    //Упражнение 2
+    vector<vector<int>> matrix_1;
+    ifstream fin("matrix.txt");
+    if (!fin.is_open()) {
+    cerr << "Ошибка: не удалось открыть matrix.txt!" << endl;
+    return 1; // завершаем программу
+} 
+
+    string line;
+    while (getline(fin, line)) {
+        stringstream ss(line);
+        vector<int> row;
+        int x;
+        while (ss >> x) {
+            row.push_back(x); // добавляем числа из строки
+    }
+    matrix_1.push_back(row); // добавляем строку в матрицу
+}
+for (auto &r : matrix_1) {
+    for (int x : r) cout << x << " ";
+    cout << "\n";
+}
+    
+    
 }
